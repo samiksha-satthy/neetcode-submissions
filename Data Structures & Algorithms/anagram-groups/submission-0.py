@@ -5,17 +5,25 @@ class Solution:
         #1. hashmap/arrays problem 
         #2. 
         
-        h = {}
+        actual = {}
 
         for str in strs:
-            sorted_str = sorted(str)
-            key = tuple(sorted_str)
+            count = [0]*26
+            for s in str:
+                index = ord(s) - ord('a')
+                count[index] += 1
+            key = tuple(count)
 
-            if key in h:
-                h[key].append(str)
-            else:
-                h[key] = [str]
+            if key not in actual:
+                actual[key] = []
+
+            actual[key].append(str)
+
+        return list(actual.values())
+
+
+                
         
-        return list(h.values())
+
 
         
