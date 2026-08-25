@@ -6,12 +6,23 @@ class Solution:
         for num in nums:
             h[num] = h.get(num, 0) + 1
 
+        buckets = [[] for _ in range(len(nums) + 1)]
+        for num, freq in h.items():
+            buckets[freq].append(num)
+
         result = []
-        for i in range(k):
-            frequent = max(h, key=h.get)
-            result.append(frequent)
-            h.pop(max(h, key=h.get))
-        
+        for freq in range(len(buckets) - 1, 0, -1):
+            for num in buckets[freq]:
+                result.append(num)
+            if len(result) == k:
+                return result
         return result
+
+                
+
+
+
+
+        
 
         
